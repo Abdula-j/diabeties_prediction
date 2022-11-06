@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Diabetes Prediction</title>
+    <style>
+      html, body {
+      min-height: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: black;
+        }
+      h1 {
+      margin: 0 0 20px;
+      font-weight: 400;
+      color: black;
+      }
+      label {
+      margin: 0 0 0px;
+      font-weight: 50;
+      color: red;
+      font-size: 12px;
+      }
+      p {
+      margin: 0 0 5px;
+      }
+      .main-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 75vh;
+      background-image: url("C:\Users\SUBBAREDDY\Downloads\diabetes image1.jpg");
+      background-size: cover; /* Resize the background image to cover the entire container */
+  
+      }
+      form {
+      padding: 25px;
+      margin: 25px;
+      width: 50%;
+      box-shadow: 0 2px 5px #f5f5f5; 
+      background: #f5f5f5;
+      border: 2px solid black;
+      border-radius: 8px;
+      }
+      input, textarea {
+      width: calc(50% - 18px);
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 2px solid black;
+      border-radius: 4px;
+      outline: none;
+      }
+      input::placeholder {
+      color: #666;
+      }
+      input {
+        display: block;
+      }
+      button {
+      width: 50%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: black; 
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      }
+      button:hover {
+      background: green;
+      }   
+      @media screen and (max-width: 600px) {
+      .main-block {
+      flex-direction: row;
+      }
+      }
+      .left-part, form {
+      width: 50%;
+      }
+      .result{
+        position: absolute;
+        visibility: visible;
+        top: 70%;
+        right: 25%;
+        width: 15%;
+        height: 15%;
+        border: 3px solid black;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px #f5f5f5;
+        text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+      <div class="left-part">
+      </div>
+      <form action="{{ url_for('predict')}}" method="post">
+        <section>
+        <center><h1><b>Diabetes Prediction</b></h1></center>
+        <p>This Web Application is processed by a Machine Learning Algorithm to predict probability of an individual having Diabetes. </p>
+        <p><i>Note that this model is 81% accurate</i></p>
+        <div class="info">
+        	  <p><b>Please Enter values for the following:</b></p><br>
+            <label><i><b>If you're of the Male gender or have not been pregnant before, input 0</b></i></label>
+         <input type="number" name="Pregnancies" placeholder="Number of times pregnant" required>
+          <label><i><b>Plasma glucose concentration </b></i></label>
+           <input type="number" name="Glucose" placeholder="Glucose Level" required>
+           <label><i><b>Diastolic blood pressure (mm Hg)</b></i></label>
+           <input type="number" step=0.01 name="Blood Pressure" placeholder="Blood Pressure" required>
+           <label><i><b>Triceps skin fold thickness (mm)</b></i></label>
+           <input type="number" step=0.01 name="Skin Thickness" placeholder="Skin Thickness" required>
+           <label><i><b>  2-Hour serum insulin (mu U/ml)</b></i></label>
+           <input type="number" name="Insulin" step=0.01 placeholder="Insulin Level" required>
+           <label><i><b> Body Mass Index = (weight in kg/(height in m)^2)</b></i></label>
+           <input type="number" name="BMI" step=0.01 placeholder="Body Mass Index" required>
+           <label><i><b>A function which scores likelihood of diabetes based on family history</b></i></label>
+           <input type="number" name="DiabetesPedigreeFunction" step=0.001 placeholder="Diabetes Pedigree Function" required>
+           <label><i><b>If you're of the Male gender or have not been pregnant before, input 0</b></i></label>
+           <input type="number" name="Age" placeholder="Age" required>
+        </div>
+        <center><button type="submit">Predict</button></center>
+        <div class = "result">
+            <h2>Result</h2>
+            <p>{{result}}</p>
+        </div>
+        </section>
+      </form>
+          <footer>
+              <p><i>Developed By Ekemini Okpongkpong </i></p>
+    </footer>
+  </body>
+</html>
